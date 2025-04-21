@@ -264,6 +264,30 @@ func (d BrkDirection) String() string {
 func (d BrkDirection) IsUp() bool   { return d == BrkDirectionUp }
 func (d BrkDirection) IsDown() bool { return d == BrkDirectionDown }
 
+type HedgeMode int
+
+const (
+	HedgeModeOne HedgeMode = iota + 1
+	HedgeModeMany
+)
+
+func (m HedgeMode) String() string {
+	switch m {
+	case HedgeModeOne:
+		return "one"
+	case HedgeModeMany:
+		return "many"
+	}
+	return "undefined"
+}
+
+func (m HedgeMode) IsOne() bool  { return m == HedgeModeOne }
+func (m HedgeMode) IsMany() bool { return m == HedgeModeMany }
+
+func (m HedgeMode) IsValid() bool {
+	return m.IsOne() || m.IsMany()
+}
+
 type PositionMode int
 
 const (

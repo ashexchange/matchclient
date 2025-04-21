@@ -591,6 +591,7 @@ type OrderGetUserPreferenceRequest struct {
 
 type OrderGetUserPreferenceResult struct {
 	PositionMode PositionMode `json:"position_mode"`
+	HedgeMode    HedgeMode    `json:"hedge_mode"`
 }
 
 func (c OrderClient) GetUserPreference(ctx context.Context, req OrderGetUserPreferenceRequest) (result *OrderGetUserPreferenceResult, err error) {
@@ -602,12 +603,14 @@ func (c OrderClient) GetUserPreference(ctx context.Context, req OrderGetUserPref
 type OrderSetUserPreferenceRequest struct {
 	UserId       types.UserID
 	PositionMode PositionMode
+	HedgeMode    HedgeMode
 }
 
 func (c OrderClient) SetUserPreference(ctx context.Context, req OrderSetUserPreferenceRequest) (err error) {
 	err = c.invoker.Invoke(ctx, "order.set_user_preference", nil,
 		req.UserId,
 		req.PositionMode,
+		req.HedgeMode,
 	)
 
 	return

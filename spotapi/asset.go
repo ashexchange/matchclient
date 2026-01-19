@@ -206,6 +206,7 @@ type (
 	AssetHistoryResponse struct {
 		Offset  uint            `json:"offset"`
 		Limit   uint            `json:"limit"`
+		Total   uint            `json:"total"`
 		Records []*AssetHistory `json:"records"`
 	}
 )
